@@ -1,26 +1,31 @@
-﻿Feature: Seller login and update language
-
+﻿Feature: Seller adding profile details
 As a seller
-I want to login to my profile and add and delete the language option
+I want the feature to add my Profile Details
+So that
+The people seeking for some skills can look into my details.
+
+Scenario: Seller add the profile details
+	Given seller logged into localhost successfully
+	When seller navigate to Profile Page
+	And seller added the profile details
+	Then The profile details added successfully
+
+Scenario Outline: Seller add the language details
+Given seller logged into localhost successfully
+When seller navigate to Profile Page
+And seller updated '<language>' details
+Then The details added successfully '<language>'
 
 
-@sellerLogin
-Scenario:Login to seller profile
-	Given the seller is on the login page
-	When the seller enter the username and password successfully
-	Then the seller able to see the seller's profile page
+Scenario Outline: Seller delete the language details
+Given seller logged into localhost successfully
+When the seller navigate to profile page
+And seller select a <'language' 
+And seller delete the selected '<language>' details
+Then the details removed successfully '<language>'
 
-
-	@LanguageAdd
-	Scenario: seller add language successfully
-	Given the seller is on the profile page
-	When the seller add new language 
-	Then the new language should be saved
-
-
-	@LanguageDelete
-	Scenario: Seller delete language successfully
-	Given the seller is on the profile page
-	When the seller delete the language
-	Then the deleted language should be removed
-
+	
+Examples: 
+| language | level    |
+| English  | Expert   |
+| Hindi    | Basic    |
